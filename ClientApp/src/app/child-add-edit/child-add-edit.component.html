@@ -1,0 +1,49 @@
+<h1>{{actionType}} kind</h1>
+<h1>message from service : {{message}}</h1>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+ 
+      <div class="form-group row">
+        <label class="control-label col-md-12" >naam</label>
+        <div class="col-md-12">
+          <input class="form-control" type="text" formControlName="childname">
+        </div>
+        <span class="text-danger ml-3" *ngIf="childname.invalid && formDir.submitted">
+          naam is verplicht.
+        </span>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-12" >geboortedatum</label>
+        <div class="col-md-12">
+          <input class="form-control" type="date" formControlName="dateofbirth">
+        </div>
+        <span class="text-danger ml-3" *ngIf="dateofbirth.invalid && formDir.submitted">
+          geboortedatum is verplicht.
+        </span>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-12" >geslacht</label>
+        <div class="col-md-12">
+      <select class="custom-select" formControlName="gender">
+        <option value="" disabled>Kies geslacht</option>
+        <option>Man</option>
+        <option>Vrouw</option>
+     </select>
+    </div>
+    <span class="text-danger ml-3" *ngIf="gender.invalid && formDir.submitted">
+      geslacht is verplicht.
+    </span>
+    </div>
+      <div class="form-group row">
+        <label class="control-label col-md-12" >opmerking</label>
+        <div class="col-md-12">
+          <textarea class="form-control" type="text" rows="5" formControlName="commentchild"></textarea>
+        </div>
+        <span class="text-danger ml-3" *ngIf="commentchild.invalid && formDir.submitted">
+          opmerking is verplicht.
+        </span>
+      </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success float-right">Save</button>
+      <button (click)="cancel()" class="btn btn-secondary float-left" >Cancel</button>
+    </div>
+  </form>

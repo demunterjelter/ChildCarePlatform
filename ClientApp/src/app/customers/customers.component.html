@@ -1,0 +1,35 @@
+<h1>klanten</h1>
+<p *ngIf="!(customers$ | async)"><em>Loading...</em></p>
+<p>
+    <a [routerLink]="['/add/customer']" class="btn btn-primary float-right mb-3">nieuwe klant</a>
+  </p>
+
+  <table class="table table-sm table-hover" *ngIf="(customers$ | async)?.length>0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Naam</th>
+        <th>Adres</th>
+        <th>Mail</th>
+        <th>TelefoonNummer</th>
+        <th>familie</th>
+        <th>opmerking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of (customers$ | async); let i=index">
+        <td>{{ customer.id }}</td>
+        <td><a [routerLink]="['/customer/', customer.id]">{{ customer.name }}</a></td>
+        <td>{{ customer.address }}</td>
+        <td>{{ customer.mail}}</td>
+        <td>{{ customer.phoneNumber}}</td>
+        <td>{{ customer.children}}</td>
+        <td>{{ customer.comment}}</td>
+        <td><a  [routerLink]="['/customer/edit/', customer.id]" class="btn btn-primary btn-sm float-right">Bewerken</a>
+        </td>
+        <td><button [disabled]="disablebutton[i]" [routerLink]="" (click)="delete(customer.id)" class="btn btn-danger btn-sm float-right">Verwijderen</button></td>
+        <td><Button (click)="setNonCustomerActive(i); buttonDisabled = true"  class="btn btn-warning btn-sm float-right">niet actief</Button></td>
+        <td><Button (click)="setCustomerActive(i); buttonDisabled = false"   class="btn btn-warning btn-sm float-right">Is actief</Button></td>      
+      </tr>
+    </tbody>
+  </table>

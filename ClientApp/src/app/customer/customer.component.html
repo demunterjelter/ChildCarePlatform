@@ -1,0 +1,38 @@
+<ng-container *ngIf="(customer$ | async) as customer; else loading">
+  
+  <p>
+      <a [routerLink]="['/add/child']" class="btn btn-primary float-right mb-3">nieuwe klant</a>
+    </p>
+  <h1>{{ customer.name }}</h1>
+  <ul>
+      <li>{{ customer.id }}</li>
+      <li>{{ customer.address }}</li>
+      <li>{{ customer.mail }}</li>
+      <li>{{ customer.phoneNumber }}</li>
+      <li>{{ customer.comment }}</li>
+  </ul>
+  <table class="table table-sm table-hover">
+      <thead>
+          <tr>
+            <th>#</th>
+            <th>Naam</th>
+            <th>geboortedatum</th>
+            <th>geslacht</th>
+            <th>opmerking</th>
+          </tr>
+        </thead>
+        <tbody>
+  <tr *ngFor="let child of customer.children; let i=index">
+      <td> {{child.id}}</td>
+      <td>{{child.name}}</td>
+      <td>{{child.dateOfBirth}}</td>
+      <td>{{child.gender}}</td>
+      <td>{{child.comment}}</td>
+      <td><a  [routerLink]="['/child/edit/', child.id]" class="btn btn-primary btn-sm float-right">Bewerken</a>
+      </td>
+      <td><button [routerLink]="" (click)="delete(child.id)" class="btn btn-danger btn-sm float-right">Verwijderen</button></td>
+  </tr>
+</tbody>
+</table>
+</ng-container>
+<ng-template #loading>Loading…</ng-template>

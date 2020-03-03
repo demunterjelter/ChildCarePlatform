@@ -1,0 +1,43 @@
+<h1>{{actionType}} babysitter</h1>
+<form [formGroup]="form" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+  <div class="form-group row">
+      <label class=" control-label col-md-12">Naam</label>
+      <div class="col-md-12">
+        <input class="form-control" type="text" formControlName="name">
+      </div>
+      <span class="text-danger ml-3" *ngIf="name.invalid && formDir.submitted">
+        Naam is verplicht.
+      </span>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-md-12" >Achternaam</label>
+      <div class="col-md-12">
+        <input class="form-control" type="text" formControlName="lastname">
+      </div>
+      <span class="text-danger ml-3" *ngIf="lastname.invalid && formDir.submitted">
+        Achternaam is verplicht.
+      </span>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-md-12" >Telefoonnummer</label>
+      <div class="col-md-12">
+        <input class="form-control" type="text" formControlName="phonenumber">
+      </div>
+      <span class="text-danger ml-3" *ngIf="phonenumber.invalid && formDir.submitted">
+        Telefoonnummer is verplicht.
+      </span>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-md-12" >Leeftijd</label>
+      <div class="col-md-12">
+        <input class="form-control" type="text" formControlName="age">
+      </div>
+      <span class="text-danger ml-3" *ngIf="age.invalid && formDir.submitted">
+        Leeftijd is verplicht.
+      </span>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success float-right">Save</button>
+      <button class="btn btn-secondary float-left" (click)="cancel()">Cancel</button>
+    </div>
+  </form>

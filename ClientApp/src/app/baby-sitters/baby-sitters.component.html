@@ -1,0 +1,30 @@
+<h1>babysitters</h1>
+<p *ngIf="!(babySitters$ | async)"><em>Loading...</em></p>
+<p>
+    <a [routerLink]="['/add/babysitter']" class="btn btn-primary float-right mb-3">nieuwe babysitter</a>
+  </p>
+
+  <table class="table table-sm table-hover" *ngIf="(babySitters$ | async)?.length>0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Naam</th>
+        <th>Achternaam</th>
+        <th>Telefoonnummer</th>
+        <th>Leeftijd</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let babySitter of (babySitters$ | async)">
+        <td>{{ babySitter.id }}</td>
+        <td><a [routerLink]="['/babysitter/', babySitter.id]">{{ babySitter.name }}</a></td>
+        <td>{{ babySitter.lastName }}</td>
+        <td>{{ babySitter.phoneNumber}}</td>
+        <td>{{ babySitter.age}}</td>
+        <td><a [routerLink]="['/babysitter/edit/', babySitter.id]" class="btn btn-primary btn-sm float-right">Edit</a>
+        </td>
+        <td><a [routerLink]="" (click)="delete(babySitter.id)" class="btn btn-danger btn-sm float-right">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>

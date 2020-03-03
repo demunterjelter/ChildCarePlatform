@@ -1,0 +1,20 @@
+<ng-container *ngIf="(babySitter$ | async) as babySitter; else loading">
+
+    <h1>{{ babySitter.name }} {{ babySitter.lastName }}</h1>
+    <ul>
+        <li>telefoonnummer: {{ babySitter.phoneNumber }}</li>
+        <li>leeftijd: {{ babySitter.age }}</li>
+    </ul>
+   
+    <ul *ngFor="let customer of babySitter.customers">
+        <h5>gegevens van {{customer.name}}</h5>
+        <li><strong> naam: </strong>{{customer.name}}</li>
+        <li><strong>adres: </strong>{{customer.address}}</li>
+        <li><strong>mail: </strong>{{customer.mail}}</li>
+        <li><strong>telefoonnummer: </strong>{{customer.phoneNumber}}</li>
+        <li><strong>familie: </strong>{{customer.family}}</li>
+        <li><strong>opmerkingen: </strong>{{customer.comment}}</li>
+    </ul>
+
+  </ng-container>
+  <ng-template #loading>Loading…</ng-template>
